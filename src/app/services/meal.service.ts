@@ -20,7 +20,7 @@ export class MealService {
       .subscribe((response: MealResponse) => this.setMeal(response.meals[0]));
   }
 
-  public getMeal(): any {
+  public getMeal(): Observable<Meal> {
     return this.meal$ as Observable<Meal>;
   }
 
