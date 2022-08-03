@@ -1,26 +1,11 @@
-$pic-width: 250px;
-$pic-margin: 5px;
-
 .details-outer {
   margin: 10px;
 
-  .lunch-card {
-    max-width: 1000px;
-    min-width: calc(#{$pic-width} + (#{$pic-margin} * 2));
-    margin: auto;
-
-    .lunch-pic {
-      max-width: $pic-width;
-      margin: $pic-margin;
-    }
-
-    .links {
-      margin-top: 10px;
-    }
-
-    .link-label {
-      margin-right: 5px;
-      font-weight: bold;
-    }
-  }
+   .lunch-card {
+      max-width: 350px;
+      
+      .links a {
+        display: block;
+      }
+   }
 }

@@ -4,4 +4,6 @@ export interface Meal {
   strInstructions: string;
   strSource: string;
   searchUrl: string;
+  strArea: string;
+  strCategory: string;
 }

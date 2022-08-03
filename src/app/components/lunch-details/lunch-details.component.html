@@ -1,6 +1,11 @@
 <div *ngIf="meal$ | async as lunch" class="details-outer">
   <mat-card class="lunch-card">
-    <mat-card-title>{{ lunch.strMeal }}</mat-card-title>
+    <mat-card-header>
+      <mat-card-title>{{ lunch.strMeal }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ lunch.strArea }} {{ lunch.strCategory }}</mat-card-subtitle
+      >
+    </mat-card-header>
 
     <img
       mat-card-image
@@ -8,33 +13,26 @@
       [src]="lunch.strMealThumb"
       [alt]="lunch.strMeal"
     />
-    <mat-card-content>
-      <h2>Cooking Instructions:</h2>
-      {{ lunch.strInstructions }}
 
+    <mat-card-content>
       <div class="links">
-        <div *ngIf="lunch.strSource" class="full-recipe-container">
-          <label class="link-label" for="full-recipe-link">Full Recipe:</label>
-          <a
-            id="full-recipe-link"
-            [href]="lunch.strSource"
-            title="{{ lunch.strMeal }} - Full Recipe"
-            target="_blank"
-            >{{ lunch.strSource }}</a
-          >
-        </div>
-        <div class="search-container">
-          <label class="link-label" for="search-link">Order Online:</label>
-          <a
-            id="search-link"
-            [href]="lunch.searchUrl"
-            title="{{ lunch.strMeal }} - Order Online"
-            target="_blank"
-            >{{ lunch.searchUrl }}</a
-          >
-        </div>
+        <a
+          *ngIf="lunch.strSource"
+          id="full-recipe-link"
+          [href]="lunch.strSource"
+          title="{{ lunch.strMeal }} - Full Recipe"
+          target="_blank"
+          >Full Recipe</a
+        >
+
+        <a
+          id="search-link"
+          [href]="lunch.searchUrl"
+          title="{{ lunch.strMeal }} - Order Online"
+          target="_blank"
+          >Order Online</a
+        >
       </div>
     </mat-card-content>
-    <mat-card-footer> </mat-card-footer>
   </mat-card>
 </div>
