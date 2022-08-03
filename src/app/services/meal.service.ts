@@ -3,31 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Meal } from '../models/meal';
 import { MealResponse } from '../models/meal-response';
-
 @Injectable({
   providedIn: 'root',
 })
 export class MealService {
-  private meal$: BehaviorSubject<Meal | null>;
+
+  private meals$: BehaviorSubject<Array<Meal>>;
 
   constructor(private http: HttpClient) {
-    this.meal$ = new BehaviorSubject<Meal | null>(null);
+    this.meals$ = new BehaviorSubject<Meal[]>([]);
   }
 
   public generateLunchIdea(): void {
     this.http
       .get<MealResponse>('https://www.themealdb.com/api/json/v1/1/random.php')
-      .subscribe((response: MealResponse) => this.setMeal(response.meals[0]));
+      .subscribe((response: MealResponse) => this.setMeals(response.meals[0]));
   }
 
-  public getMeal(): Observable<Meal> {
-    return this.meal$ as Observable<Meal>;
+  public getMeals(): Observable<Array<Meal>> {
+    return this.meals$ as Observable<Array<Meal>>;
   }
 
-  private setMeal(meal: Meal): void {
+  private setMeals(meal: Meal): void {
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
 
-    this.meal$.next(meal);
+    this.meals$.next([meal, ...this.meals$.getValue()])
   }
 
   private prepareSearchUrl(name: string): string {

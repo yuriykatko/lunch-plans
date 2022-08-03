@@ -9,10 +9,10 @@ import { MealService } from 'src/app/services/meal.service';
   styleUrls: ['./lunch-details.component.scss'],
 })
 export class LunchDetailsComponent implements OnInit {
-  public meal$: Observable<Meal>;
+  public meals$: Observable<Array<Meal>>;
 
   constructor(private mealService: MealService) {
-    this.meal$ = this.mealService.getMeal();
+    this.meals$ = this.mealService.getMeals();
   }
 
   ngOnInit(): void {}

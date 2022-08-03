@@ -1,4 +1,4 @@
-<div *ngIf="meal$ | async as lunch" class="details-outer">
+<div *ngFor="let lunch of meals$ | async" class="details-outer">
   <mat-card class="lunch-card">
     <mat-card-header>
       <mat-card-title>{{ lunch.strMeal }}</mat-card-title>

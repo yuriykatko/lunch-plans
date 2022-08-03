@@ -1,11 +1,14 @@
 .details-outer {
+  display: inline-flex;
   margin: 10px;
 
    .lunch-card {
       max-width: 350px;
       
-      .links a {
-        display: block;
+      .links {
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-between;
       }
    }
 }
