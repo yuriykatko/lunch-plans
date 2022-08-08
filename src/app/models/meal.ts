@@ -7,4 +7,6 @@ export interface Meal {
   searchUrl: string;
   strArea: string;
   strCategory: string;
+
+  isLoading: boolean;
 }

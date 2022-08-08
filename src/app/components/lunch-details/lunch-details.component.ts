@@ -17,6 +17,10 @@ export class LunchDetailsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public imageLoaded(id: string): void {
+    this.mealService.setLoaded(id);
+  }
+
   public remove(id: string): void {
     this.mealService.removeMeal(id);
   }

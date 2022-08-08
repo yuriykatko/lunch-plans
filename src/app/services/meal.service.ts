@@ -28,14 +28,30 @@ export class MealService {
     const meals = this.getMealsValue();
     const filtered = meals.filter(meal => meal.idMeal !== id);
 
-    this.meals$.next(filtered);
+    this.setMealsValue(filtered);
+  }
+
+  public setLoaded(id: string): void {
+    const meals = this.getMealsValue();
+    const updated = meals.find(meal => meal.idMeal === id);
+
+    if(updated) {
+      updated.isLoading = false;
+    }
+
+    this.setMealsValue(meals);
   }
 
   private setMeals(meal: Meal): void {
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
+    meal.isLoading = true;
 
-    this.meals$.next([meal, ...this.getMealsValue()])
+    this.setMealsValue([meal, ...this.getMealsValue()]);
   }
+
+  private setMealsValue(meals: Array<Meal>): void {
+    this.meals$.next(meals);
+  } 
 
   private getMealsValue(): Array<Meal> {
     return this.meals$.getValue();

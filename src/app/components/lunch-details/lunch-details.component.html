@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title>{{ lunch.strMeal }}</mat-card-title>
       <mat-card-subtitle
-        >{{ lunch.strArea }} {{ lunch.strCategory }}</mat-card-subtitle
+        >{{ lunch.strArea }} {{ lunch.strCategory }} Dish</mat-card-subtitle
       >
       <mat-card-actions>
         <button mat-mini-fab color="warn" title="Remove Lunch Idea" (click)="remove(lunch.idMeal)">
@@ -12,11 +12,15 @@
       </mat-card-actions>
     </mat-card-header>
 
+    <mat-progress-spinner *ngIf="lunch.isLoading" class="pic-loading" mode="indeterminate"></mat-progress-spinner>
+
     <img
       mat-card-image
       class="lunch-pic"
       [src]="lunch.strMealThumb"
       [alt]="lunch.strMeal"
+      height="282px"
+      (load)="imageLoaded(lunch.idMeal)"
     />
 
     <mat-card-content>

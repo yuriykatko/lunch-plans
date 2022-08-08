@@ -5,6 +5,13 @@
    .lunch-card {
       width: 250px;
 
+      .pic-loading {
+        position: absolute;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+        opacity: 0.6;
+      }
+
       mat-card-header {
         justify-content: space-between;
 
