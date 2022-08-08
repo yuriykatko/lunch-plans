@@ -3,10 +3,14 @@
   margin: 10px;
 
    .lunch-card {
-      max-width: 350px;
+      width: 250px;
 
       mat-card-header {
         justify-content: space-between;
+
+        .mat-card-actions {
+          margin-right: 0;
+        }
       }
       
       .links {
