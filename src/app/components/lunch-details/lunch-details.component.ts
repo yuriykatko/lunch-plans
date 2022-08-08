@@ -16,4 +16,8 @@ export class LunchDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  public remove(id: string): void {
+    this.mealService.removeMeal(id);
+  }
 }

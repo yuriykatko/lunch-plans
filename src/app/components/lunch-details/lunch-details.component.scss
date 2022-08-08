@@ -4,6 +4,10 @@
 
    .lunch-card {
       max-width: 350px;
+
+      mat-card-header {
+        justify-content: space-between;
+      }
       
       .links {
         display: inline-flex;

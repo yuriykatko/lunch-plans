@@ -24,10 +24,21 @@ export class MealService {
     return this.meals$ as Observable<Array<Meal>>;
   }
 
+  public removeMeal(id: string): void {
+    const meals = this.getMealsValue();
+    const filtered = meals.filter(meal => meal.idMeal !== id);
+
+    this.meals$.next(filtered);
+  }
+
   private setMeals(meal: Meal): void {
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
 
-    this.meals$.next([meal, ...this.meals$.getValue()])
+    this.meals$.next([meal, ...this.getMealsValue()])
+  }
+
+  private getMealsValue(): Array<Meal> {
+    return this.meals$.getValue();
   }
 
   private prepareSearchUrl(name: string): string {

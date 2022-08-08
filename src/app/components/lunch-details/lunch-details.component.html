@@ -5,6 +5,11 @@
       <mat-card-subtitle
         >{{ lunch.strArea }} {{ lunch.strCategory }}</mat-card-subtitle
       >
+      <mat-card-actions>
+        <button mat-button color="warn" (click)="remove(lunch.idMeal)">
+          Delete
+        </button>
+      </mat-card-actions>
     </mat-card-header>
 
     <img
@@ -16,7 +21,7 @@
 
     <mat-card-content>
       <div class="links">
-        <a
+        <a mat-button
           *ngIf="lunch.strSource"
           id="full-recipe-link"
           [href]="lunch.strSource"
@@ -25,7 +30,7 @@
           >Full Recipe</a
         >
 
-        <a
+        <a mat-button
           id="search-link"
           [href]="lunch.searchUrl"
           title="{{ lunch.strMeal }} - Order Online"
