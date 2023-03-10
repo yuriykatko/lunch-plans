@@ -8,13 +8,10 @@ jobs:
     name: Deploy Application to GitHub pages
     runs-on: self-hosted
     steps:
-      - name: Force Install GIT latest
-        run: |
-          apt-get install -y software-properties-common \
-          && apt-get update \
-          && add-apt-repository -y ppa:git-core/ppa \
-          && apt-get update \
-          && apt-get install -y git
+      - name: Install git
+        run:
+          apt-get update
+          apt-get install -y git
       - name: Check out repo
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
