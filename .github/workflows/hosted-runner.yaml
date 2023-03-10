@@ -1,0 +1,12 @@
+name: Testing self-hosted runners 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test if self-hosted runner works
+    runs-on: self-hosted
+    steps:
+      - name: Test
+        run: echo "Hello World"
