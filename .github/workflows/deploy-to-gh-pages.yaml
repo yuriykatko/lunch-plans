@@ -1,11 +1,11 @@
-name: Testing self-hosted runners 
+name: Deploy the App to Github Pages
 
 on:
   workflow_dispatch:
 
 jobs:
   test:
-    name: Deploy Application to GitHub pages
+    name: Deploy Application to GitHub Pages
     runs-on: self-hosted
     steps:
       - name: Check out repo
