@@ -8,8 +8,6 @@ jobs:
     name: Deploy Application to GitHub pages
     runs-on: self-hosted
     steps:
-      - name: Install git
-        run: apt-get install -y git
       - name: Check out repo
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
