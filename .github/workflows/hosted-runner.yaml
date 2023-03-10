@@ -5,8 +5,12 @@ on:
 
 jobs:
   test:
-    name: Test if self-hosted runner works
+    name: Build application
     runs-on: self-hosted
     steps:
-      - name: Test
-        run: echo "Hello World"
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm i
+      - name: Build application
+        run: npm run build
