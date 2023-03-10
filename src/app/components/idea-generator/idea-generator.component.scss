@@ -2,3 +2,19 @@
   padding: 25px;
   text-align: center;
 }
+
+#generate-btn {
+  color: #eade14;
+  animation: glow 3s infinite;
+
+  &:hover {
+    color: #eade14;
+    animation: none;
+  }
+}
+
+@keyframes glow {
+  50% {
+    color: #673ab7;
+  }
+}
