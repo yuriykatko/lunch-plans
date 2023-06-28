@@ -50,12 +50,14 @@ export class MealService {
   }
 
   private populateIngredients(meal: Meal): Ingredient[] {
+    const emptyValues = ["", null];
+    
     return Array.from({ length: 20 }, (skip, index) => index + 1)
-      .filter((index) => meal[`strIngredient${index}`] !== '')
+      .filter((index) => !emptyValues.some(ev => ev === meal[`strIngredient${index}`]))
       .map((index) => {
         return {
-          name: meal[`strIngredient${index}`].trim(),
-          quantity: meal[`strMeasure${index}`].trim(),
+          name: meal[`strIngredient${index}`]?.trim(),
+          quantity: meal[`strMeasure${index}`]?.trim(),
         };
       });
   }
