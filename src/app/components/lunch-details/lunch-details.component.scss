@@ -26,6 +26,17 @@
       }
     }
 
+    .center {
+      section {
+        height: 280px;
+        cursor: pointer;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
     .links {
       display: inline-flex;
       width: 100%;

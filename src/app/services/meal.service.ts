@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Ingredient, Meal } from '../models/meal';
 import { MealResponse } from '../models/meal-response';
+import { DisplayMode } from '../models/display-mode';
 @Injectable({
   providedIn: 'root',
 })
 export class MealService {
   private meals$: BehaviorSubject<Array<Meal>>;
+  private displayMode$: BehaviorSubject<DisplayMode>;
 
   constructor(private http: HttpClient) {
     this.meals$ = new BehaviorSubject<Meal[]>([]);
+    this.displayMode$ = new BehaviorSubject<DisplayMode>(DisplayMode.Image);
   }
 
   public generateLunchIdea(): void {
@@ -21,6 +24,18 @@ export class MealService {
 
   public getMeals(): Observable<Array<Meal>> {
     return this.meals$ as Observable<Array<Meal>>;
+  }
+
+  public getDisplayMode(): Observable<DisplayMode> {
+    return this.displayMode$ as Observable<DisplayMode>;
+  }
+
+  public toggleDisplayMode(): void {
+    const mode = this.getDisplayModeValue();
+    const newMode =
+      mode === DisplayMode.Image ? DisplayMode.Ingredients : DisplayMode.Image;
+
+    this.setDisplayMode(newMode);
   }
 
   public removeMeal(id: string): void {
@@ -50,10 +65,13 @@ export class MealService {
   }
 
   private populateIngredients(meal: Meal): Ingredient[] {
-    const emptyValues = ["", null];
-    
+    const emptyValues = ['', null];
+
     return Array.from({ length: 20 }, (skip, index) => index + 1)
-      .filter((index) => !emptyValues.some(ev => ev === meal[`strIngredient${index}`]))
+      .filter(
+        (index) =>
+          !emptyValues.some((ev) => ev === meal[`strIngredient${index}`])
+      )
       .map((index) => {
         return {
           name: meal[`strIngredient${index}`]?.trim(),
@@ -68,6 +86,14 @@ export class MealService {
 
   private getMealsValue(): Array<Meal> {
     return this.meals$.getValue();
+  }
+
+  private getDisplayModeValue(): DisplayMode {
+    return this.displayMode$.getValue();
+  }
+
+  private setDisplayMode(mode: DisplayMode): void {
+    this.displayMode$.next(mode);
   }
 
   private prepareSearchUrl(name: string): string {

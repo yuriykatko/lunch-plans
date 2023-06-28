@@ -6,26 +6,50 @@
         >{{ lunch.strArea }} {{ lunch.strCategory }} Dish</mat-card-subtitle
       >
       <mat-card-actions>
-        <button mat-mini-fab color="warn" title="Remove Lunch Idea" (click)="remove(lunch.idMeal)">
+        <button
+          mat-mini-fab
+          color="warn"
+          title="Remove Lunch Idea"
+          (click)="remove(lunch.idMeal)"
+        >
           <mat-icon>delete_outline</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card-header>
 
-    <mat-progress-spinner *ngIf="lunch.isLoading" class="pic-loading" mode="indeterminate"></mat-progress-spinner>
+    <div class="center" (click)="toggleMode()">
+      <section
+        name="lunch-image"
+        *ngIf="(displayMode$ | async) === allModes.Image"
+        title="See Ingredients"
+      >
+        <mat-progress-spinner
+          *ngIf="lunch.isLoading"
+          class="pic-loading"
+          mode="indeterminate"
+        ></mat-progress-spinner>
 
-    <img
-      mat-card-image
-      class="lunch-pic"
-      [src]="lunch.strMealThumb"
-      [alt]="lunch.strMeal"
-      height="282px"
-      (load)="imageLoaded(lunch.idMeal)"
-    />
+        <img
+          mat-card-image
+          class="lunch-pic"
+          [src]="lunch.strMealThumb"
+          [alt]="lunch.strMeal"
+          (load)="imageLoaded(lunch.idMeal)"
+        />
+      </section>
+      <section
+        name="lunch-ingredients"
+        *ngIf="(displayMode$ | async) === allModes.Ingredients"
+        title="See Image"
+      >
+        Ingredients
+      </section>
+    </div>
 
     <mat-card-content>
       <div class="links">
-        <a mat-button
+        <a
+          mat-button
           *ngIf="lunch.strSource"
           id="full-recipe-link"
           [href]="lunch.strSource"
@@ -34,7 +58,8 @@
           >Full Recipe</a
         >
 
-        <a mat-button
+        <a
+          mat-button
           id="search-link"
           [href]="lunch.searchUrl"
           title="{{ lunch.strMeal }} - Order Online"
