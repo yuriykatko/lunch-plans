@@ -1,3 +1,5 @@
+import { DisplayMode } from "./display-mode";
+
 export interface Meal {
   idMeal: string;
   strMeal: string;
@@ -9,6 +11,7 @@ export interface Meal {
   strCategory: string;
   ingredients: Array<Ingredient>;
   isLoading: boolean;
+  displayMode: DisplayMode;
   [key: string]: any;
 }
 

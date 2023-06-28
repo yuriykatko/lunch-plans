@@ -9,11 +9,9 @@ import { DisplayMode } from '../models/display-mode';
 })
 export class MealService {
   private meals$: BehaviorSubject<Array<Meal>>;
-  private displayMode$: BehaviorSubject<DisplayMode>;
 
   constructor(private http: HttpClient) {
     this.meals$ = new BehaviorSubject<Meal[]>([]);
-    this.displayMode$ = new BehaviorSubject<DisplayMode>(DisplayMode.Image);
   }
 
   public generateLunchIdea(): void {
@@ -24,18 +22,6 @@ export class MealService {
 
   public getMeals(): Observable<Array<Meal>> {
     return this.meals$ as Observable<Array<Meal>>;
-  }
-
-  public getDisplayMode(): Observable<DisplayMode> {
-    return this.displayMode$ as Observable<DisplayMode>;
-  }
-
-  public toggleDisplayMode(): void {
-    const mode = this.getDisplayModeValue();
-    const newMode =
-      mode === DisplayMode.Image ? DisplayMode.Ingredients : DisplayMode.Image;
-
-    this.setDisplayMode(newMode);
   }
 
   public removeMeal(id: string): void {
@@ -56,10 +42,29 @@ export class MealService {
     this.setMealsValue(meals);
   }
 
+  public toggleDisplayMode(mealId: string): void {
+    const meals = this.getMealsValue();
+    const meal = meals.find(item => item.idMeal === mealId);
+
+    switch (meal?.displayMode) {
+      case DisplayMode.Image:
+        meal.displayMode = DisplayMode.Ingredients;
+        break;
+      case DisplayMode.Ingredients:
+        meal.displayMode = DisplayMode.Image;
+        break;
+      default:
+        break;
+    }
+
+    this.setMealsValue(meals);
+  }
+
   private setMeals(meal: Meal): void {
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
     meal.isLoading = true;
     meal.ingredients = this.populateIngredients(meal);
+    meal.displayMode = DisplayMode.Image;
 
     this.setMealsValue([meal, ...this.getMealsValue()]);
   }
@@ -86,14 +91,6 @@ export class MealService {
 
   private getMealsValue(): Array<Meal> {
     return this.meals$.getValue();
-  }
-
-  private getDisplayModeValue(): DisplayMode {
-    return this.displayMode$.getValue();
-  }
-
-  private setDisplayMode(mode: DisplayMode): void {
-    this.displayMode$.next(mode);
   }
 
   private prepareSearchUrl(name: string): string {

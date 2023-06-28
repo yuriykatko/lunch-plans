@@ -17,10 +17,10 @@
       </mat-card-actions>
     </mat-card-header>
 
-    <div class="center" (click)="toggleMode()">
+    <div class="center" (click)="toggleMode(lunch.idMeal)">
       <section
         name="lunch-image"
-        *ngIf="(displayMode$ | async) === allModes.Image"
+        *ngIf="lunch.displayMode === allModes.Image"
         title="See Ingredients"
       >
         <mat-progress-spinner
@@ -39,7 +39,7 @@
       </section>
       <section
         name="lunch-ingredients"
-        *ngIf="(displayMode$ | async) === allModes.Ingredients"
+        *ngIf="lunch.displayMode === allModes.Ingredients"
         title="See Image"
       >
         <h2>Ingredients</h2>

@@ -11,12 +11,10 @@ import { MealService } from 'src/app/services/meal.service';
 })
 export class LunchDetailsComponent implements OnInit {
   public meals$: Observable<Array<Meal>>;
-  public displayMode$: Observable<DisplayMode>;
   public allModes: typeof DisplayMode = DisplayMode;
 
   constructor(private mealService: MealService) {
     this.meals$ = this.mealService.getMeals();
-    this.displayMode$ = this.mealService.getDisplayMode();
   }
 
   ngOnInit(): void {}
@@ -29,7 +27,7 @@ export class LunchDetailsComponent implements OnInit {
     this.mealService.removeMeal(id);
   }
 
-  public toggleMode(): void {
-    this.mealService.toggleDisplayMode();
+  public toggleMode(mealId: string): void {
+    this.mealService.toggleDisplayMode(mealId);
   }
 }
