@@ -17,7 +17,12 @@
       </mat-card-actions>
     </mat-card-header>
 
-    <div class="center" (click)="toggleMode(lunch.idMeal)">
+    <div
+      class="center"
+      (click)="toggleMode(lunch.idMeal)"
+      (swipeleft)="toggleMode(lunch.idMeal)"
+      (swiperight)="toggleMode(lunch.idMeal)"
+    >
       <section
         name="lunch-image"
         *ngIf="lunch.displayMode === allModes.Image"

@@ -4,7 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  HammerModule,
+  HammerGestureConfig,
+  HAMMER_GESTURE_CONFIG,
+} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -13,8 +18,21 @@ import { LunchDetailsComponent } from './components/lunch-details/lunch-details.
 import { MealService } from './services/meal.service';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 
+import * as hammer from 'hammerjs';
+
+export class LunchPlansSwipeConfig extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: hammer.DIRECTION_HORIZONTAL },
+  };
+}
+
 @NgModule({
-  declarations: [AppComponent, IdeaGeneratorComponent, LunchDetailsComponent, IngredientsComponent],
+  declarations: [
+    AppComponent,
+    IdeaGeneratorComponent,
+    LunchDetailsComponent,
+    IngredientsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -22,9 +40,16 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HammerModule
   ],
-  providers: [MealService],
+  providers: [
+    MealService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: LunchPlansSwipeConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
