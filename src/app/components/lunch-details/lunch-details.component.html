@@ -42,7 +42,8 @@
         *ngIf="(displayMode$ | async) === allModes.Ingredients"
         title="See Image"
       >
-        Ingredients
+        <h2>Ingredients</h2>
+        <ingredients [ingredients]="lunch.ingredients"></ingredients>
       </section>
     </div>
 

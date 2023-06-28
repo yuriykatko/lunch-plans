@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { DisplayMode } from 'src/app/models/display-mode';
 import { Meal } from 'src/app/models/meal';
