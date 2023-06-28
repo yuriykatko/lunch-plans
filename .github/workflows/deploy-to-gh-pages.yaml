@@ -1,7 +1,9 @@
 name: Deploy the App to Github Pages
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   test:
