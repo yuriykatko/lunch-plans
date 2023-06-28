@@ -11,9 +11,10 @@ import { AppComponent } from './app.component';
 import { IdeaGeneratorComponent } from './components/idea-generator/idea-generator.component';
 import { LunchDetailsComponent } from './components/lunch-details/lunch-details.component';
 import { MealService } from './services/meal.service';
+import { IngredientsComponent } from './components/ingredients/ingredients.component';
 
 @NgModule({
-  declarations: [AppComponent, IdeaGeneratorComponent, LunchDetailsComponent],
+  declarations: [AppComponent, IdeaGeneratorComponent, LunchDetailsComponent, IngredientsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
