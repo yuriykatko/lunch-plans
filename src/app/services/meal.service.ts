@@ -60,27 +60,7 @@ export class MealService {
     this.setMealsValue(meals);
   }
 
-  private tryAddToStorage(meal: Meal): void {
-    const key = "meals";
-
-    let fromStorage = JSON.parse(String(localStorage.getItem(key))) as Meal[];
-
-    if (fromStorage === null) {
-      fromStorage = [];
-    }
-
-    const exists = fromStorage.some(item => item.idMeal === meal.idMeal);
-
-    if(!exists) {
-      fromStorage.push(meal);
-
-      localStorage.setItem(key, JSON.stringify(fromStorage));
-    }
-  }
-
   private setMeals(meal: Meal): void {
-    this.tryAddToStorage(meal);
-
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
     meal.isLoading = true;
     meal.ingredients = this.populateIngredients(meal);
