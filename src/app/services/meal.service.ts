@@ -16,8 +16,8 @@ export class MealService {
 
   public generateLunchIdea(): void {
     this.http
-      .get<MealResponse>('https://www.themealdb.com/api/json/v1/1/random.php')
-      .subscribe((response: MealResponse) => this.setMeals(response.meals[0]));
+      .get<Meal>('https://meal-api-rho.vercel.app/api/random')
+      .subscribe((response: Meal) => this.setMeals(response));
   }
 
   public getMeals(): Observable<Array<Meal>> {
@@ -60,7 +60,27 @@ export class MealService {
     this.setMealsValue(meals);
   }
 
+  private tryAddToStorage(meal: Meal): void {
+    const key = "meals";
+
+    let fromStorage = JSON.parse(String(localStorage.getItem(key))) as Meal[];
+
+    if (fromStorage === null) {
+      fromStorage = [];
+    }
+
+    const exists = fromStorage.some(item => item.idMeal === meal.idMeal);
+
+    if(!exists) {
+      fromStorage.push(meal);
+
+      localStorage.setItem(key, JSON.stringify(fromStorage));
+    }
+  }
+
   private setMeals(meal: Meal): void {
+    this.tryAddToStorage(meal);
+
     meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
     meal.isLoading = true;
     meal.ingredients = this.populateIngredients(meal);
