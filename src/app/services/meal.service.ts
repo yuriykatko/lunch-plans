@@ -16,7 +16,7 @@ export class MealService {
 
   public generateLunchIdea(): void {
     this.http
-      .get<Meal>('http://localhost:3000/api/random-from-db')
+      .get<Meal>('https://meal-api-rho.vercel.app/api/random-from-db')
       .subscribe((response: Meal) => this.setMeals(response));
   }
 
