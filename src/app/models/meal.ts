@@ -1,14 +1,14 @@
 import { DisplayMode } from "./display-mode";
 
 export interface Meal {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-  strInstructions: string;
-  strSource: string;
-  searchUrl: string;
-  strArea: string;
-  strCategory: string;
+  idmeal: string;
+  strmeal: string;
+  strmealthumb: string;
+  strinstructions: string;
+  strsource: string;
+  searchurl: string;
+  strarea: string;
+  strcategory: string;
   ingredients: Array<Ingredient>;
   isLoading: boolean;
   displayMode: DisplayMode;
