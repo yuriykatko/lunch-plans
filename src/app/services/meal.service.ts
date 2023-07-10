@@ -26,14 +26,14 @@ export class MealService {
 
   public removeMeal(id: string): void {
     const meals = this.getMealsValue();
-    const filtered = meals.filter((meal) => meal.idMeal !== id);
+    const filtered = meals.filter((meal) => meal.idmeal !== id);
 
     this.setMealsValue(filtered);
   }
 
   public setLoaded(id: string): void {
     const meals = this.getMealsValue();
-    const updated = meals.find((meal) => meal.idMeal === id);
+    const updated = meals.find((meal) => meal.idmeal === id);
 
     if (updated) {
       updated.isLoading = false;
@@ -44,7 +44,7 @@ export class MealService {
 
   public toggleDisplayMode(mealId: string): void {
     const meals = this.getMealsValue();
-    const meal = meals.find(item => item.idMeal === mealId);
+    const meal = meals.find(item => item.idmeal === mealId);
 
     switch (meal?.displayMode) {
       case DisplayMode.Image:
@@ -61,7 +61,7 @@ export class MealService {
   }
 
   private setMeals(meal: Meal): void {
-    meal.searchUrl = this.prepareSearchUrl(meal.strMeal);
+    meal.searchurl = this.preparesearchurl(meal.strmeal);
     meal.isLoading = true;
     meal.ingredients = this.populateIngredients(meal);
     meal.displayMode = DisplayMode.Image;
@@ -93,7 +93,7 @@ export class MealService {
     return this.meals$.getValue();
   }
 
-  private prepareSearchUrl(name: string): string {
+  private preparesearchurl(name: string): string {
     const query = name.split(' ').join('+');
 
     return `https://www.google.com/search?q=order+online+${query}`;

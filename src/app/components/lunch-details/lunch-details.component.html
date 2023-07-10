@@ -1,16 +1,16 @@
 <div *ngFor="let lunch of meals$ | async" class="details-outer">
   <mat-card class="lunch-card">
     <mat-card-header>
-      <mat-card-title>{{ lunch.strMeal }}</mat-card-title>
+      <mat-card-title>{{ lunch.strmeal }}</mat-card-title>
       <mat-card-subtitle
-        >{{ lunch.strArea }} {{ lunch.strCategory }} Dish</mat-card-subtitle
+        >{{ lunch.strarea }} {{ lunch.strcategory }} Dish</mat-card-subtitle
       >
       <mat-card-actions>
         <button
           mat-mini-fab
           color="warn"
           title="Remove Lunch Idea"
-          (click)="remove(lunch.idMeal)"
+          (click)="remove(lunch.idmeal)"
         >
           <mat-icon>delete_outline</mat-icon>
         </button>
@@ -19,9 +19,9 @@
 
     <div
       class="center"
-      (click)="toggleMode(lunch.idMeal)"
-      (swipeleft)="toggleMode(lunch.idMeal)"
-      (swiperight)="toggleMode(lunch.idMeal)"
+      (click)="toggleMode(lunch.idmeal)"
+      (swipeleft)="toggleMode(lunch.idmeal)"
+      (swiperight)="toggleMode(lunch.idmeal)"
     >
       <section
         name="lunch-image"
@@ -37,9 +37,9 @@
         <img
           mat-card-image
           class="lunch-pic"
-          [src]="lunch.strMealThumb"
-          [alt]="lunch.strMeal"
-          (load)="imageLoaded(lunch.idMeal)"
+          [src]="lunch.strmealthumb"
+          [alt]="lunch.strmeal"
+          (load)="imageLoaded(lunch.idmeal)"
         />
       </section>
       <section
@@ -56,10 +56,10 @@
       <div class="links">
         <a
           mat-button
-          *ngIf="lunch.strSource"
+          *ngIf="lunch.strsource"
           id="full-recipe-link"
-          [href]="lunch.strSource"
-          title="{{ lunch.strMeal }} - Full Recipe"
+          [href]="lunch.strsource"
+          title="{{ lunch.strmeal }} - Full Recipe"
           target="_blank"
           >Full Recipe</a
         >
@@ -67,8 +67,8 @@
         <a
           mat-button
           id="search-link"
-          [href]="lunch.searchUrl"
-          title="{{ lunch.strMeal }} - Order Online"
+          [href]="lunch.searchurl"
+          title="{{ lunch.strmeal }} - Order Online"
           target="_blank"
           >Order Online</a
         >
