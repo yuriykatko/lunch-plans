@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lunch-plans:build:production"
+              "buildTarget": "lunch-plans:build:production"
             },
             "development": {
-              "browserTarget": "lunch-plans:build:development"
+              "buildTarget": "lunch-plans:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lunch-plans:build"
+            "buildTarget": "lunch-plans:build"
           }
         },
         "test": {
