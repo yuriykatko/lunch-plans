@@ -5,9 +5,10 @@ import { Meal } from 'src/app/models/meal';
 import { MealService } from 'src/app/services/meal.service';
 
 @Component({
-  selector: 'lunch-details',
-  templateUrl: './lunch-details.component.html',
-  styleUrls: ['./lunch-details.component.scss'],
+    selector: 'lunch-details',
+    templateUrl: './lunch-details.component.html',
+    styleUrls: ['./lunch-details.component.scss'],
+    standalone: false
 })
 export class LunchDetailsComponent implements OnInit {
   public meals$: Observable<Array<Meal>>;

@@ -4,9 +4,10 @@ import { debounceTime } from 'rxjs/operators';
 import { MealService } from 'src/app/services/meal.service';
 
 @Component({
-  selector: 'idea-generator',
-  templateUrl: './idea-generator.component.html',
-  styleUrls: ['./idea-generator.component.scss'],
+    selector: 'idea-generator',
+    templateUrl: './idea-generator.component.html',
+    styleUrls: ['./idea-generator.component.scss'],
+    standalone: false
 })
 export class IdeaGeneratorComponent implements OnInit {
   private getIdeaClicked = new Subject<boolean>();
