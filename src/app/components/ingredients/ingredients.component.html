@@ -1,5 +1,7 @@
 <ul>
-    <li *ngFor="let item of ingredients">
-        {{ item.name }}: {{ item.quantity }}
+  @for (item of ingredients; track item) {
+    <li>
+      {{ item.name }}: {{ item.quantity }}
     </li>
+  }
 </ul>

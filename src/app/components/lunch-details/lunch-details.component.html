@@ -1,78 +1,80 @@
-<div *ngFor="let lunch of meals$ | async" class="details-outer">
-  <mat-card class="lunch-card">
-    <mat-card-header>
-      <mat-card-title>{{ lunch.strmeal }}</mat-card-title>
-      <mat-card-subtitle
-        >{{ lunch.strarea }} {{ lunch.strcategory }} Dish</mat-card-subtitle
-      >
-      <mat-card-actions>
-        <button
-          mat-mini-fab
-          color="warn"
-          title="Remove Lunch Idea"
-          (click)="remove(lunch.idmeal)"
-        >
-          <mat-icon>delete_outline</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card-header>
-
-    <div
-      class="center"
-      (click)="toggleMode(lunch.idmeal)"
-      (swipeleft)="toggleMode(lunch.idmeal)"
-      (swiperight)="toggleMode(lunch.idmeal)"
-    >
-      <section
-        name="lunch-image"
-        *ngIf="lunch.displayMode === allModes.Image"
-        title="See Ingredients"
-      >
-        <mat-progress-spinner
-          *ngIf="lunch.isLoading"
-          class="pic-loading"
-          mode="indeterminate"
-        ></mat-progress-spinner>
-
-        <img
-          mat-card-image
-          class="lunch-pic"
-          [src]="lunch.strmealthumb"
-          [alt]="lunch.strmeal"
-          (load)="imageLoaded(lunch.idmeal)"
-        />
-      </section>
-      <section
-        name="lunch-ingredients"
-        *ngIf="lunch.displayMode === allModes.Ingredients"
-        title="See Image"
-      >
-        <h2>Ingredients</h2>
-        <ingredients [ingredients]="lunch.ingredients"></ingredients>
-      </section>
-    </div>
-
-    <mat-card-content>
-      <div class="links">
-        <a
-          mat-button
-          *ngIf="lunch.strsource"
-          id="full-recipe-link"
-          [href]="lunch.strsource"
-          title="{{ lunch.strmeal }} - Full Recipe"
-          target="_blank"
-          >Full Recipe</a
-        >
-
-        <a
-          mat-button
-          id="search-link"
-          [href]="lunch.searchurl"
-          title="{{ lunch.strmeal }} - Order Online"
-          target="_blank"
-          >Order Online</a
-        >
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+@for (lunch of meals$ | async; track lunch) {
+  <div class="details-outer">
+    <mat-card class="lunch-card">
+      <mat-card-header>
+        <mat-card-title>{{ lunch.strmeal }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ lunch.strarea }} {{ lunch.strcategory }} Dish</mat-card-subtitle
+          >
+          <mat-card-actions>
+            <button
+              mat-mini-fab
+              color="warn"
+              title="Remove Lunch Idea"
+              (click)="remove(lunch.idmeal)"
+              >
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-header>
+        <div
+          class="center"
+          (click)="toggleMode(lunch.idmeal)"
+          (swipeleft)="toggleMode(lunch.idmeal)"
+          (swiperight)="toggleMode(lunch.idmeal)"
+          >
+          @if (lunch.displayMode === allModes.Image) {
+            <section
+              name="lunch-image"
+              title="See Ingredients"
+              >
+              @if (lunch.isLoading) {
+                <mat-progress-spinner
+                  class="pic-loading"
+                  mode="indeterminate"
+                ></mat-progress-spinner>
+              }
+              <img
+                mat-card-image
+                class="lunch-pic"
+                [src]="lunch.strmealthumb"
+                [alt]="lunch.strmeal"
+                (load)="imageLoaded(lunch.idmeal)"
+                />
+            </section>
+          }
+          @if (lunch.displayMode === allModes.Ingredients) {
+            <section
+              name="lunch-ingredients"
+              title="See Image"
+              >
+              <h2>Ingredients</h2>
+              <ingredients [ingredients]="lunch.ingredients"></ingredients>
+            </section>
+          }
+        </div>
+        <mat-card-content>
+          <div class="links">
+            @if (lunch.strsource) {
+              <a
+                mat-button
+                id="full-recipe-link"
+                [href]="lunch.strsource"
+                title="{{ lunch.strmeal }} - Full Recipe"
+                target="_blank"
+                >Full Recipe</a
+                >
+              }
+              <a
+                mat-button
+                id="search-link"
+                [href]="lunch.searchurl"
+                title="{{ lunch.strmeal }} - Order Online"
+                target="_blank"
+                >Order Online</a
+                >
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
