@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -26,30 +26,24 @@ export class LunchPlansSwipeConfig extends HammerGestureConfig {
   };
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    IdeaGeneratorComponent,
-    LunchDetailsComponent,
-    IngredientsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    HammerModule
-  ],
-  providers: [
-    MealService,
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: LunchPlansSwipeConfig,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        IdeaGeneratorComponent,
+        LunchDetailsComponent,
+        IngredientsComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        HammerModule], providers: [
+        MealService,
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: LunchPlansSwipeConfig,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
