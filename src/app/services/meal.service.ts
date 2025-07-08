@@ -70,19 +70,14 @@ export class MealService {
   }
 
   private populateIngredients(meal: Meal): Ingredient[] {
-    const emptyValues = ['', null];
-
-    return Array.from({ length: 20 }, (skip, index) => index + 1)
-      .filter(
-        (index) =>
-          !emptyValues.some((ev) => ev === meal[`strIngredient${index}`])
-      )
+    return Array.from({ length: 20 }, (skip, index) => index + 1)      
       .map((index) => {
         return {
-          name: meal[`strIngredient${index}`]?.trim(),
-          quantity: meal[`strMeasure${index}`]?.trim(),
+          name: meal[`stringredient${index}`]?.trim(),
+          quantity: meal[`strmeasure${index}`]?.trim(),
         };
-      });
+      })
+      .filter(ing => ing.name !== '');
   }
 
   private setMealsValue(meals: Array<Meal>): void {
