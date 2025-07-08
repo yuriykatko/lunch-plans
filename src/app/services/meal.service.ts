@@ -79,7 +79,7 @@ export class MealService {
           quantity: meal[`strmeasure${index}`]?.trim(),
         };
       })
-      .filter(ing => ing.name !== '');
+      .filter(ing => Boolean(ing.name));
   }
 
   private setMealsValue(meals: Array<Meal>): void {
