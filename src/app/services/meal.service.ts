@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Ingredient, Meal } from '../models/meal';
-import { MealResponse } from '../models/meal-response';
 import { DisplayMode } from '../models/display-mode';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +16,7 @@ export class MealService {
 
   public generateLunchIdea(): void {
     this.http
-      .get<Meal>('https://meal-api-rho.vercel.app/api/random-from-db')
+      .get<Meal>(`${environment.apiUrl}/api/random-from-db`)
       .subscribe((response: Meal) => this.setMeals(response));
   }
 
