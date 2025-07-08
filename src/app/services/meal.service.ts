@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Ingredient, Meal } from '../models/meal';
 import { DisplayMode } from '../models/display-mode';
 import { environment } from '../../environments/environment';
+import { NotificationService } from './notification.service';
 @Injectable({
   providedIn: 'root',
 })
 export class MealService {
   private meals$: BehaviorSubject<Array<Meal>>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private notificationService: NotificationService) {
     this.meals$ = new BehaviorSubject<Meal[]>([]);
   }
 
@@ -29,6 +30,7 @@ export class MealService {
     const filtered = meals.filter((meal) => meal.idmeal !== id);
 
     this.setMealsValue(filtered);
+    this.notificationService.showNotification('Meal deleted!');
   }
 
   public setLoaded(id: string): void {
@@ -70,7 +72,7 @@ export class MealService {
   }
 
   private populateIngredients(meal: Meal): Ingredient[] {
-    return Array.from({ length: 20 }, (skip, index) => index + 1)      
+    return Array.from({ length: 20 }, (skip, index) => index + 1)
       .map((index) => {
         return {
           name: meal[`stringredient${index}`]?.trim(),
