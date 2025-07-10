@@ -1,6 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    { "source": "/", "destination": "/en-US/index.html" }
-  ]
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/en-US/index.html"
+        },
+        {
+            "source": "/es",
+            "destination": "es/index.html"
+        }
+    ]
 }
