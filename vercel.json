@@ -10,7 +10,7 @@
             "destination": "es/index.html"
         },
         {
-            "source": "*",
+            "source": "(.*)",
             "destination": "/en-US/index.html"
         }
     ]
