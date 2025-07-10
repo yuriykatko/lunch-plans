@@ -8,6 +8,10 @@
         {
             "source": "/es",
             "destination": "es/index.html"
+        },
+        {
+            "source": "/*",
+            "destination": "/en-US/index.html"
         }
     ]
 }
