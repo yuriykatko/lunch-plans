@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import {
+  MatBottomSheetModule
+} from '@angular/material/bottom-sheet';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
@@ -19,6 +23,7 @@ import { LunchDetailsComponent } from './components/lunch-details/lunch-details.
 import { MealService } from './services/meal.service';
 import { NotificationService } from './services/notification.service';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { LocaleListComponent } from './components/locale-list/locale-list.component';
 
 import * as hammer from 'hammerjs';
 
@@ -34,13 +39,16 @@ export class LunchPlansSwipeConfig extends HammerGestureConfig {
     IdeaGeneratorComponent,
     LunchDetailsComponent,
     IngredientsComponent,
+    LocaleListComponent
   ],
   bootstrap: [AppComponent], imports: [BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatListModule,
     MatProgressSpinnerModule,
+    MatBottomSheetModule,
     MatSnackBarModule
   ], providers: [
     MealService,
