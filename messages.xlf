@@ -2,11 +2,75 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="4820490180971989246" datatype="html">
+        <source>Lunch Plans</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/idea-generator/idea-generator.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5193539160604294602" datatype="html">
+        <source>Generate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/idea-generator/idea-generator.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4683251618600806685" datatype="html">
         <source> Get Lunch Idea </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/idea-generator/idea-generator.component.html</context>
           <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5236963656687385881" datatype="html">
+        <source>Remove Lunch Idea</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3211574325334304610" datatype="html">
+        <source>See Ingredients</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3017442428737678241" datatype="html">
+        <source>See Image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9113906794544800679" datatype="html">
+        <source>Ingredients</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="829757564789253257" datatype="html">
+        <source>Full Recipe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5739799748786038625" datatype="html">
+        <source>Order Online</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/lunch-details/lunch-details.component.html</context>
+          <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
     </body>

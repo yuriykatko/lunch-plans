@@ -4,10 +4,11 @@
       <mat-card-header>
         <mat-card-title>{{ lunch.strmeal }}</mat-card-title>
         <mat-card-subtitle
-          >{{ lunch.strarea }} {{ lunch.strcategory }} Dish</mat-card-subtitle
+          >{{ lunch.strarea }} {{ lunch.strcategory }}</mat-card-subtitle
           >
           <mat-card-actions>
             <button
+              i18n-title
               mat-mini-fab
               color="warn"
               title="Remove Lunch Idea"
@@ -25,6 +26,7 @@
           >
           @if (lunch.displayMode === allModes.Image) {
             <section
+              i18n-title
               name="lunch-image"
               title="See Ingredients"
               >
@@ -45,10 +47,11 @@
           }
           @if (lunch.displayMode === allModes.Ingredients) {
             <section
+              i18n-title
               name="lunch-ingredients"
               title="See Image"
               >
-              <h2>Ingredients</h2>
+              <h2 i18n>Ingredients</h2>
               <ingredients [ingredients]="lunch.ingredients"></ingredients>
             </section>
           }
@@ -57,19 +60,23 @@
           <div class="links">
             @if (lunch.strsource) {
               <a
+                id="full-recipe-link"                
+                i18n
+                i18n-title
                 mat-button
-                id="full-recipe-link"
+                title="Full Recipe"
                 [href]="lunch.strsource"
-                title="{{ lunch.strmeal }} - Full Recipe"
                 target="_blank"
                 >Full Recipe</a
                 >
               }
               <a
+                id="search-link"                
+                i18n
+                i18n-title
                 mat-button
-                id="search-link"
-                [href]="lunch.searchurl"
-                title="{{ lunch.strmeal }} - Order Online"
+                title="Order Online"
+                [href]="lunch.searchurl"                
                 target="_blank"
                 >Order Online</a
                 >
