@@ -12,12 +12,20 @@ import { LocaleListComponent } from './components/locale-list/locale-list.compon
 export class AppComponent implements OnInit {
   private _bottomSheet = inject(MatBottomSheet);
 
-  public locale = $localize.locale;
+  public locale = this.setLocaleLabel($localize.locale);
 
   constructor(private titleService: Title) { }
 
   ngOnInit() {
     this.titleService.setTitle($localize`Lunch Plans`);
+  }
+
+  setLocaleLabel(locale: string | undefined) {
+    let label = "English";
+
+    if (locale === "es") label = "Español";
+
+    return label;
   }
 
   openBottomSheet(): void {

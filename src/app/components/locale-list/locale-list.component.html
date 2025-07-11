@@ -1,10 +1,10 @@
 <h2 i18n>Choose Language</h2>
 <mat-nav-list>
-    <a href="/" mat-list-item>
+    <a href="/" mat-list-item [disabled]="isCurrentLocale('en-US')">
         <span matListItemTitle>English</span>
     </a>
 
-    <a href="/es" mat-list-item>
+    <a href="/es" mat-list-item [disabled]="isCurrentLocale('es')">
         <span matListItemTitle>Español</span>
     </a>  
 </mat-nav-list>

@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class LocaleListComponent {
-
+  public isCurrentLocale(locale: string): boolean {
+    return $localize.locale === locale;
+  }
 }
