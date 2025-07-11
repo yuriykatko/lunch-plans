@@ -8,6 +8,8 @@ import { Title } from '@angular/platform-browser';
   standalone: false
 })
 export class AppComponent implements OnInit {
+  public locale = $localize.locale;
+
   constructor(private titleService: Title) { }
 
   ngOnInit() {
