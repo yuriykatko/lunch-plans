@@ -30,7 +30,7 @@ export class MealService {
     const filtered = meals.filter((meal) => meal.idmeal !== id);
 
     this.setMealsValue(filtered);
-    this.notificationService.showNotification('Meal deleted!');
+    this.notificationService.showNotification($localize`Meal deleted!`);
   }
 
   public setLoaded(id: string): void {

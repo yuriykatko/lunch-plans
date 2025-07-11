@@ -11,6 +11,6 @@ export class NotificationService {
   constructor() { }
 
   public showNotification(message: string): void {
-    this._snackBar.open(message, 'Close', { duration: 3000 } as MatSnackBarConfig);
+    this._snackBar.open(message, $localize`Close`, { duration: 3000 } as MatSnackBarConfig);
   }
 }
