@@ -2,12 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="3453929685926629133" datatype="html">
+        <source>Change Language</source>
+        <target state="needs-review-translation">Cambiar idioma</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="718664953917016933" datatype="html">
+        <source>
+          <x id="INTERPOLATION" equiv-text="{{locale}}"></x>
+        </source>
+        <target state="needs-translation"></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4820490180971989246" datatype="html">
         <source>Lunch Plans</source>
         <target state="">Planes de almuerzo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/idea-generator/idea-generator.component.html</context>
@@ -28,6 +46,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/idea-generator/idea-generator.component.html</context>
           <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8788125049405332197" datatype="html">
+        <source>Choose Language</source>
+        <target state="needs-review-translation">Elige el idioma</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/locale-list/locale-list.component.html</context>
+          <context context-type="linenumber">1,2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5236963656687385881" datatype="html">
