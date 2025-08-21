@@ -29,8 +29,8 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular/build": "^20.1.4",
-    "@angular/cli": "^20.1.4",
+    "@angular/build": "^20.2.0",
+    "@angular/cli": "^20.2.0",
     "@angular/compiler-cli": "^20.1.4",
     "@angular/localize": "^20.1.4",
     "@types/hammerjs": "^2.0.41",
