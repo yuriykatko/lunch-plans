@@ -8,7 +8,8 @@
     "build": "ng build --configuration production",
     "build:gh-page": "ng build --base-href=lunch-plans",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --browsers=ChromeHeadless --watch=false",
+    "test:watch": "ng test --browsers=ChromeHeadless --watch=true"
   },
   "private": true,
   "dependencies": {

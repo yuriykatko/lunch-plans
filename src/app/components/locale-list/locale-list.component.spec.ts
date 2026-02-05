@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatListModule } from '@angular/material/list';
 import { LocaleListComponent } from './locale-list.component';
 
 describe('LocaleListComponent', () => {
@@ -8,7 +8,8 @@ describe('LocaleListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocaleListComponent]
+      declarations: [LocaleListComponent],
+      imports: [MatListModule]
     })
     .compileComponents();
 
