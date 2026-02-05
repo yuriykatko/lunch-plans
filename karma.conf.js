@@ -8,9 +8,8 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      
+
     ],
     client: {
       jasmine: {
@@ -21,9 +20,6 @@ module.exports = function (config) {
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
-    },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/lunch-plans'),
       subdir: '.',
@@ -32,10 +28,12 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    // Minimal console output
+    reporters: ['dots'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    // Reduce Karma logging to warnings and errors
+    logLevel: config.LOG_ERROR,
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
