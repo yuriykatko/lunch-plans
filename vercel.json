@@ -3,15 +3,15 @@
     "rewrites": [
         {
             "source": "/",
-            "destination": "/en-US/index.html"
+            "destination": "/en-US/index.csr.html"
         },
         {
             "source": "/es",
-            "destination": "es/index.html"
+            "destination": "/es/index.csr.html"
         },
         {
             "source": "(.*)",
-            "destination": "/en-US/index.html"
+            "destination": "/en-US/index.csr.html"
         }
     ]
 }
