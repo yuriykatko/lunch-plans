@@ -1,6 +1,7 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
     "framework": "angular",
+    "buildCommand": "npm run test && npm run build",
     "redirects": [
         {
             "source": "/",
