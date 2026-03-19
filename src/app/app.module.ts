@@ -11,11 +11,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
   BrowserModule,
-  HammerModule,
   HammerGestureConfig,
-  HAMMER_GESTURE_CONFIG,
+  HAMMER_GESTURE_CONFIG, provideClientHydration, withEventReplay,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { IdeaGeneratorComponent } from './components/idea-generator/idea-generator.component';
@@ -25,11 +25,9 @@ import { NotificationService } from './services/notification.service';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { LocaleListComponent } from './components/locale-list/locale-list.component';
 
-import * as hammer from 'hammerjs';
-
 export class LunchPlansSwipeConfig extends HammerGestureConfig {
   overrides = <any>{
-    swipe: { direction: hammer.DIRECTION_HORIZONTAL },
+    swipe: { direction: 6 /* Hammer.DIRECTION_HORIZONTAL */ },
   };
 }
 
@@ -43,6 +41,7 @@ export class LunchPlansSwipeConfig extends HammerGestureConfig {
   ],
   bootstrap: [AppComponent], imports: [BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot([]),
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -58,6 +57,7 @@ export class LunchPlansSwipeConfig extends HammerGestureConfig {
       useClass: LunchPlansSwipeConfig,
     },
     provideHttpClient(withInterceptorsFromDi()),
+    provideClientHydration(withEventReplay()),
   ]
 })
 export class AppModule { }
