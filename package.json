@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:es": "ng serve --configuration=es",
+    "start": "portless lunch-plans ng serve",
+    "start:es": "portless lunch-plans ng serve --configuration=es",
     "build": "ng build --configuration production",
     "build:gh-page": "ng build --base-href=lunch-plans",
     "watch": "ng build --watch --configuration development",
