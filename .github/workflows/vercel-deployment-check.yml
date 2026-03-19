@@ -4,8 +4,8 @@
 name: Vercel Deployment Check
 
 on:
-  deployment:
-    types: [created]
+  repository_dispatch:
+    types: [vercel-deployment]
 
 jobs:
   test-before-deploy:
