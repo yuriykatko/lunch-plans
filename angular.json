@@ -27,7 +27,7 @@
       "prefix": "",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",          
+          "builder": "@angular/build:application",
           "options": {
             "localize": true,
             "allowedCommonJsDependencies": [
@@ -56,7 +56,7 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": []
+              "allowedHosts": [".localhost"]
             },
             "ssr": {
               "entry": "src/server.ts"
