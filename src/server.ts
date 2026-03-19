@@ -44,7 +44,7 @@ app.use((req, res, next) => {
     .then((response) =>
       response ? writeResponseToNodeResponse(response, res) : next(),
     )
-    .catch(next);
+    .catch(err => next(err instanceof Error ? err : new Error(String(err))));
 });
 
 /**
