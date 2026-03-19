@@ -1,4 +1,11 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "framework": "angular"
+    "framework": "angular",
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/en-US/",
+            "permanent": false
+        }
+    ]
 }
