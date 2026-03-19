@@ -13,7 +13,7 @@ import {
   BrowserModule,
   HammerModule,
   HammerGestureConfig,
-  HAMMER_GESTURE_CONFIG,
+  HAMMER_GESTURE_CONFIG, provideClientHydration, withEventReplay,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -58,6 +58,7 @@ export class LunchPlansSwipeConfig extends HammerGestureConfig {
       useClass: LunchPlansSwipeConfig,
     },
     provideHttpClient(withInterceptorsFromDi()),
+    provideClientHydration(withEventReplay()),
   ]
 })
 export class AppModule { }
