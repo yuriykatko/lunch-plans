@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Ingredient, Meal } from '../models/meal';
 import { DisplayMode } from '../models/display-mode';
 import { environment } from '../../environments/environment';
@@ -18,6 +19,12 @@ export class MealService {
   public generateLunchIdea(): void {
     this.http
       .get<Meal>(`${environment.apiUrl}/api/random-from-db`)
+      .pipe(
+        catchError(() => {
+          this.notificationService.showNotification($localize`Failed to get lunch idea. Please try again.`);
+          return EMPTY;
+        })
+      )
       .subscribe((response: Meal) => this.setMeals(response));
   }
 
