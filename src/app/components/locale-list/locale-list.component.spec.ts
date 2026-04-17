@@ -9,9 +9,8 @@ describe('LocaleListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LocaleListComponent],
-      imports: [MatListModule]
-    })
-    .compileComponents();
+      imports: [MatListModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LocaleListComponent);
     component = fixture.componentInstance;
@@ -20,5 +19,16 @@ describe('LocaleListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('isCurrentLocale', () => {
+    it('should return true when the locale matches $localize.locale', () => {
+      const current = $localize.locale || 'en-US';
+      expect(component.isCurrentLocale(current)).toBeTrue();
+    });
+
+    it('should return false for a non-matching locale', () => {
+      expect(component.isCurrentLocale('xx-FAKE')).toBeFalse();
+    });
   });
 });
