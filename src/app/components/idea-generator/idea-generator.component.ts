@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { MealService } from 'src/app/services/meal.service';
+import { MealService } from '../../services/meal.service';
 
 @Component({
     selector: 'idea-generator',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DisplayMode } from 'src/app/models/display-mode';
-import { Meal } from 'src/app/models/meal';
-import { MealService } from 'src/app/services/meal.service';
+import { DisplayMode } from '../../models/display-mode';
+import { Meal } from '../../models/meal';
+import { MealService } from '../../services/meal.service';
 
 @Component({
     selector: 'lunch-details',
