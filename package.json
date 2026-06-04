@@ -8,8 +8,8 @@
     "build": "ng build --configuration production",
     "build:gh-page": "ng build --base-href=lunch-plans",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --browsers=ChromeHeadless --watch=false",
-    "test:watch": "ng test --browsers=ChromeHeadless --watch=true",
+    "test": "ng test --no-watch",
+    "test:watch": "ng test",
     "serve:ssr:lunch-plans": "node dist/lunch-plans/server/server.mjs"
   },
   "private": true,
