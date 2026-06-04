@@ -21,8 +21,6 @@
         <div
           class="center"
           (click)="toggleMode(lunch.idmeal)"
-          (swipeleft)="toggleMode(lunch.idmeal)"
-          (swiperight)="toggleMode(lunch.idmeal)"
           >
           @if (lunch.displayMode === allModes.Image) {
             <section
@@ -60,7 +58,7 @@
           <div class="links">
             @if (lunch.strsource) {
               <a
-                id="full-recipe-link"                
+                id="full-recipe-link"
                 i18n
                 i18n-title
                 mat-button
@@ -71,12 +69,12 @@
                 >
               }
               <a
-                id="search-link"                
+                id="search-link"
                 i18n
                 i18n-title
                 mat-button
                 title="Order Online"
-                [href]="lunch.searchurl"                
+                [href]="lunch.searchurl"
                 target="_blank"
                 >Order Online</a
                 >
