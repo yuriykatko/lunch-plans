@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { LocaleListComponent } from './components/locale-list/locale-list.component';
 
 describe('AppComponent', () => {
-  let titleSpy: jasmine.SpyObj<Title>;
-  let bottomSheetSpy: jasmine.SpyObj<MatBottomSheet>;
+  let titleSpy: { setTitle: ReturnType<typeof vi.fn> };
+  let bottomSheetSpy: { open: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
-    titleSpy = jasmine.createSpyObj('Title', ['setTitle']);
-    bottomSheetSpy = jasmine.createSpyObj('MatBottomSheet', ['open']);
+    titleSpy = { setTitle: vi.fn() };
+    bottomSheetSpy = { open: vi.fn() };
 
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -64,7 +64,7 @@ describe('AppComponent', () => {
       app.openBottomSheet();
 
       expect(bottomSheetSpy.open).toHaveBeenCalledTimes(1);
-      expect(bottomSheetSpy.open.calls.mostRecent().args[0]).toBe(LocaleListComponent as any);
+      expect(bottomSheetSpy.open.mock.lastCall![0]).toBe(LocaleListComponent as any);
     });
   });
 });

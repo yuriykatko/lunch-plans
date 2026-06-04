@@ -19,12 +19,12 @@ describe('NotificationService', () => {
 
   describe('showNotification', () => {
     it('should open the snack bar with the given message and a duration of 3000ms', () => {
-      const openSpy = spyOn(snackBar, 'open');
+      const openSpy = vi.spyOn(snackBar, 'open');
 
       service.showNotification('Test message');
 
       expect(openSpy).toHaveBeenCalledTimes(1);
-      const [message, , config] = openSpy.calls.mostRecent().args;
+      const [message, , config] = openSpy.mock.lastCall!;
       expect(message).toBe('Test message');
       expect((config as any).duration).toBe(3000);
     });

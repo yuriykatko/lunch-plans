@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IdeaGeneratorComponent } from './idea-generator.component';
 import { MealService } from '../../services/meal.service';
@@ -6,10 +6,10 @@ import { MealService } from '../../services/meal.service';
 describe('IdeaGeneratorComponent', () => {
   let component: IdeaGeneratorComponent;
   let fixture: ComponentFixture<IdeaGeneratorComponent>;
-  let mealServiceSpy: jasmine.SpyObj<MealService>;
+  let mealServiceSpy: { generateLunchIdea: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
-    mealServiceSpy = jasmine.createSpyObj('MealService', ['generateLunchIdea']);
+    mealServiceSpy = { generateLunchIdea: vi.fn() };
 
     await TestBed.configureTestingModule({
       declarations: [IdeaGeneratorComponent],
@@ -20,39 +20,44 @@ describe('IdeaGeneratorComponent', () => {
   });
 
   beforeEach(() => {
+    vi.useFakeTimers();
     fixture = TestBed.createComponent(IdeaGeneratorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call generateLunchIdea after debounce when getLunchIdea is called', fakeAsync(() => {
+  it('should call generateLunchIdea after debounce when getLunchIdea is called', () => {
     component.getLunchIdea();
     expect(mealServiceSpy.generateLunchIdea).not.toHaveBeenCalled();
 
-    tick(250);
+    vi.advanceTimersByTime(250);
     expect(mealServiceSpy.generateLunchIdea).toHaveBeenCalledTimes(1);
-  }));
+  });
 
-  it('should debounce rapid clicks into a single service call', fakeAsync(() => {
+  it('should debounce rapid clicks into a single service call', () => {
     component.getLunchIdea();
     component.getLunchIdea();
     component.getLunchIdea();
 
-    tick(250);
+    vi.advanceTimersByTime(250);
     expect(mealServiceSpy.generateLunchIdea).toHaveBeenCalledTimes(1);
-  }));
+  });
 
-  it('should allow a second call after the debounce window', fakeAsync(() => {
+  it('should allow a second call after the debounce window', () => {
     component.getLunchIdea();
-    tick(250);
+    vi.advanceTimersByTime(250);
 
     component.getLunchIdea();
-    tick(250);
+    vi.advanceTimersByTime(250);
 
     expect(mealServiceSpy.generateLunchIdea).toHaveBeenCalledTimes(2);
-  }));
+  });
 });

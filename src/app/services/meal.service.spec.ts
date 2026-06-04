@@ -34,10 +34,10 @@ function makeMealResponse(overrides: Partial<Meal> = {}): Meal {
 describe('MealService', () => {
   let service: MealService;
   let httpMock: HttpTestingController;
-  let notificationSpy: jasmine.SpyObj<NotificationService>;
+  let notificationSpy: { showNotification: ReturnType<typeof vi.fn> };
 
   beforeEach(() => {
-    notificationSpy = jasmine.createSpyObj('NotificationService', ['showNotification']);
+    notificationSpy = { showNotification: vi.fn() };
 
     TestBed.configureTestingModule({
       imports: [],
@@ -90,7 +90,7 @@ describe('MealService', () => {
       service.generateLunchIdea();
       httpMock.expectOne(`${environment.apiUrl}/api/random-from-db`).flush(mockMeal);
 
-      expect(meals[0].isLoading).toBeTrue();
+      expect(meals[0].isLoading).toBe(true);
     });
 
     it('should set displayMode to Image on the new meal', () => {
@@ -202,11 +202,11 @@ describe('MealService', () => {
 
       service.generateLunchIdea();
       httpMock.expectOne(`${environment.apiUrl}/api/random-from-db`).flush(makeMealResponse({ idmeal: '1' }));
-      expect(meals[0].isLoading).toBeTrue();
+      expect(meals[0].isLoading).toBe(true);
 
       service.setLoaded('1');
 
-      expect(meals[0].isLoading).toBeFalse();
+      expect(meals[0].isLoading).toBe(false);
     });
 
     it('should not break when id does not exist', () => {
@@ -218,7 +218,7 @@ describe('MealService', () => {
 
       service.setLoaded('nonexistent');
 
-      expect(meals[0].isLoading).toBeTrue();
+      expect(meals[0].isLoading).toBe(true);
     });
   });
 

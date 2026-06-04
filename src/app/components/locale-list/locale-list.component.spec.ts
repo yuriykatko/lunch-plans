@@ -24,11 +24,11 @@ describe('LocaleListComponent', () => {
   describe('isCurrentLocale', () => {
     it('should return true when the locale matches $localize.locale', () => {
       const current = $localize.locale || 'en-US';
-      expect(component.isCurrentLocale(current)).toBeTrue();
+      expect(component.isCurrentLocale(current)).toBe(true);
     });
 
     it('should return false for a non-matching locale', () => {
-      expect(component.isCurrentLocale('xx-FAKE')).toBeFalse();
+      expect(component.isCurrentLocale('xx-FAKE')).toBe(false);
     });
   });
 });

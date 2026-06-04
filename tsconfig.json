@@ -17,8 +17,7 @@
     "module": "es2020",
     "useDefineForClassFields": false,
     "skipLibCheck": true,
-    "rootDir": "./src",
-    "types": ["jasmine"]
+    "rootDir": "./src"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

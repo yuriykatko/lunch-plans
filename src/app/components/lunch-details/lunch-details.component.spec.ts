@@ -10,15 +10,22 @@ import { DisplayMode } from '../../models/display-mode';
 describe('LunchDetailsComponent', () => {
   let component: LunchDetailsComponent;
   let fixture: ComponentFixture<LunchDetailsComponent>;
-  let mealServiceSpy: jasmine.SpyObj<MealService>;
+  let mealServiceSpy: {
+    getMeals: ReturnType<typeof vi.fn>;
+    removeMeal: ReturnType<typeof vi.fn>;
+    setLoaded: ReturnType<typeof vi.fn>;
+    toggleDisplayMode: ReturnType<typeof vi.fn>;
+  };
   let mealsSubject: BehaviorSubject<Meal[]>;
 
   beforeEach(async () => {
     mealsSubject = new BehaviorSubject<Meal[]>([]);
-    mealServiceSpy = jasmine.createSpyObj('MealService', [
-      'getMeals', 'removeMeal', 'setLoaded', 'toggleDisplayMode',
-    ]);
-    mealServiceSpy.getMeals.and.returnValue(mealsSubject.asObservable());
+    mealServiceSpy = {
+      getMeals: vi.fn().mockReturnValue(mealsSubject.asObservable()),
+      removeMeal: vi.fn(),
+      setLoaded: vi.fn(),
+      toggleDisplayMode: vi.fn(),
+    };
 
     await TestBed.configureTestingModule({
       declarations: [LunchDetailsComponent],
@@ -39,15 +46,15 @@ describe('LunchDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should expose meals$ from MealService', (done) => {
+  it('should expose meals$ from MealService', async () => {
     const meal = { idmeal: '1', strmeal: 'Pizza', displayMode: DisplayMode.Image } as Meal;
     mealsSubject.next([meal]);
 
-    component.meals$.subscribe(meals => {
-      expect(meals.length).toBe(1);
-      expect(meals[0].strmeal).toBe('Pizza');
-      done();
+    const meals = await new Promise<Meal[]>(resolve => {
+      component.meals$.subscribe(m => resolve(m));
     });
+    expect(meals.length).toBe(1);
+    expect(meals[0].strmeal).toBe('Pizza');
   });
 
   it('should delegate remove to MealService.removeMeal', () => {
