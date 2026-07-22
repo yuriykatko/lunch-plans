@@ -17,4 +17,28 @@ jobs:
 
       - run: npm ci
 
-      - run: npm test
+      - name: Run tests
+        id: tests
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee test-output.txt
+
+      - name: Publish test summary
+        if: always()
+        run: |
+          {
+            echo "## Test Results"
+            echo ""
+            if [ "${{ steps.tests.outcome }}" = "success" ]; then
+              echo "PASS: npm test"
+            else
+              echo "FAIL: npm test"
+            fi
+            echo ""
+            echo "<details><summary>Test output (last 200 lines)</summary>"
+            echo ""
+            echo '```text'
+            tail -n 200 test-output.txt
+            echo '```'
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
