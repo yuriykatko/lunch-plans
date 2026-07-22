@@ -19,6 +19,10 @@ jobs:
 
       - name: Run tests
         id: tests
+        env:
+          NO_COLOR: "1"
+          FORCE_COLOR: "0"
+          TERM: dumb
         run: |
           set -o pipefail
           npm test 2>&1 | tee test-output.txt
@@ -26,6 +30,8 @@ jobs:
       - name: Publish test summary
         if: always()
         run: |
+          perl -pe 's/\e\[[0-9;]*[[:alpha:]]//g' test-output.txt > test-output-clean.txt
+
           {
             echo "## Test Results"
             echo ""
@@ -38,7 +44,7 @@ jobs:
             echo "<details><summary>Test output (last 200 lines)</summary>"
             echo ""
             echo '```text'
-            tail -n 200 test-output.txt
+            tail -n 200 test-output-clean.txt
             echo '```'
             echo "</details>"
           } >> "$GITHUB_STEP_SUMMARY"
