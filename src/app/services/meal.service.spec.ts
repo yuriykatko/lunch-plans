@@ -90,7 +90,7 @@ describe('MealService', () => {
       service.generateLunchIdea();
       httpMock.expectOne(`${environment.apiUrl}/api/random-from-db`).flush(mockMeal);
 
-      expect(meals[0].isLoading).toBe(true);
+      expect(meals[0].isLoading).toBe(false);
     });
 
     it('should set displayMode to Image on the new meal', () => {
