@@ -1,10 +1,17 @@
 <div class="generator-outer">
-  <h1 i18n>Lunch Plans</h1>
+
+  <h1 i18n>
+    @if (isEmojiDisplayed) {
+      <span>🍖</span>
+    }
+
+    Lunch Plans
+  </h1>
 
   <button
     id="generate-btn"
     i18n
-    i18n-title    
+    i18n-title
     mat-raised-button
     color="primary"
     title="Generate"
