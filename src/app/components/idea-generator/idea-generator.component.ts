@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MealService } from '../../services/meal.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
     selector: 'idea-generator',
@@ -12,7 +13,9 @@ import { MealService } from '../../services/meal.service';
 export class IdeaGeneratorComponent implements OnInit {
   private getIdeaClicked = new Subject<boolean>();
 
-  constructor(private mealService: MealService) {}
+  constructor(private mealService: MealService,
+              private translationService: TranslationService
+  ) {}
 
   ngOnInit(): void {
     this.getIdeaClicked
@@ -22,5 +25,15 @@ export class IdeaGeneratorComponent implements OnInit {
 
   public getLunchIdea(): void {
     this.getIdeaClicked.next(true);
+    this.testTranslation();
+  }
+
+  public async testTranslation(): Promise<void> {
+    const original = "Hola";
+
+    this.translationService.translateText("Hello")
+      .then(translated => {
+        console.log(`Original: ${original}; Translated: ${translated}`);
+      });
   }
 }
