@@ -2,9 +2,9 @@
   <div class="details-outer">
     <mat-card class="lunch-card">
       <mat-card-header>
-        <mat-card-title>{{ lunch.strmeal }}</mat-card-title>
+        <mat-card-title>{{ localize(lunch, 'strmeal') }}</mat-card-title>
         <mat-card-subtitle
-          >{{ lunch.strarea }} {{ lunch.strcategory }}</mat-card-subtitle
+          >{{ localize(lunch, 'strarea') }} {{ localize(lunch, 'strcategory') }}</mat-card-subtitle
           >
           <mat-card-actions>
             <button
@@ -50,7 +50,7 @@
               title="See Image"
               >
               <h2 i18n>Ingredients</h2>
-              <ingredients [ingredients]="lunch.ingredients"></ingredients>
+              <ingredients [ingredients]="localize(lunch, 'ingredients')"></ingredients>
             </section>
           }
         </div>
