@@ -6,13 +6,16 @@ import { Ingredient, Meal } from '../models/meal';
 import { DisplayMode } from '../models/display-mode';
 import { environment } from '../../environments/environment';
 import { NotificationService } from './notification.service';
+import { TranslationService } from './translation.service';
 @Injectable({
   providedIn: 'root',
 })
 export class MealService {
   private meals$: BehaviorSubject<Array<Meal>>;
 
-  constructor(private http: HttpClient, private notificationService: NotificationService) {
+  constructor(private http: HttpClient,
+              private notificationService: NotificationService,
+              private translationService: TranslationService) {
     this.meals$ = new BehaviorSubject<Meal[]>([]);
   }
 
@@ -75,7 +78,44 @@ export class MealService {
     meal.ingredients = this.populateIngredients(meal);
     meal.displayMode = DisplayMode.Image;
 
+    meal = this.addTranslations(meal);
+
     this.setMealsValue([meal, ...this.getMealsValue()]);
+  }
+
+  private addTranslations(meal: Meal): Meal {
+    meal.translations = [];
+
+    // Fire-and-forget: meal is already shown in English; translation arrives and re-renders later.
+    this.translateMeal(meal).catch(() => undefined);
+
+    return meal;
+  }
+
+  private async translateMeal(meal: Meal): Promise<void> {
+    const [strmeal, strcategory, strarea, strinstructions, ingredients] = await Promise.all([
+      this.translationService.translateText(meal.strmeal),
+      this.translationService.translateText(meal.strcategory),
+      this.translationService.translateText(meal.strarea),
+      this.translationService.translateText(meal.strinstructions),
+      this.translateIngredients(meal.ingredients),
+    ]);
+
+    meal.translations = [
+      ...meal.translations,
+      { locale: 'es', strmeal, strcategory, strarea, strinstructions, ingredients },
+    ];
+
+    this.setMealsValue(this.getMealsValue());
+  }
+
+  private translateIngredients(ingredients: Array<Ingredient>): Promise<Array<Ingredient>> {
+    return Promise.all(
+      ingredients.map(async (ingredient) => ({
+        name: await this.translationService.translateText(ingredient.name),
+        quantity: await this.translationService.translateText(ingredient.quantity),
+      }))
+    );
   }
 
   private populateIngredients(meal: Meal): Ingredient[] {

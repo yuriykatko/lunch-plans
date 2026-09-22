@@ -12,10 +12,20 @@ export interface Meal {
   ingredients: Array<Ingredient>;
   isLoading: boolean;
   displayMode: DisplayMode;
+  translations: Array<TranslatedMeal>;
   [key: string]: any;
 }
 
 export interface Ingredient {
   name: string;
   quantity: string;
+}
+
+export interface TranslatedMeal {
+  locale: string;
+  strmeal: string;
+  strcategory: string;
+  strarea: string;
+  strinstructions: string;
+  ingredients: Array<Ingredient>;
 }

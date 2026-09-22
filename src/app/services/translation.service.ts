@@ -15,8 +15,8 @@ export class TranslationService {
 
     if (translateAPI) {
       this.translator = await translateAPI.create({
-        sourceLanguage: 'es',
-        targetLanguage: 'en',
+        sourceLanguage: 'en',
+        targetLanguage: 'es',
       });
     }
 
